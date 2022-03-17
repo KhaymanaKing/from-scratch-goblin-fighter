@@ -26,9 +26,14 @@ body {
     --shadow: 0px 10px 20px -12px rgba(0,0,0,0.45);
     --gutter: 30px;
     --footer-height: 25px;
+    background-image: url(../assets/forrestbg.png);
+    background-size: 68%;
+    background-repeat: no-repeat;
+    background-position: center;
+    
     
     font-family: 'Titillium Web', sans-serif;
-    background-color: var(--color2);
+    background-color:rgb(168, 245, 241); 
 }
 
 main {
@@ -41,11 +46,9 @@ main {
 
 section {
     background-color: var(--color5);
-    max-width: 80%;
+    
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+
     padding-top: var(--gutter);
     padding-bottom: var(--gutter);
     margin-top: var(--gutter);
@@ -78,7 +81,7 @@ header img {
 p {
     margin: var(--gutter);
 }
-  
+
 footer {
     position: fixed;
     width: 100%;
@@ -88,4 +91,9 @@ footer {
     justify-content: flex-end;
     background-color: var(--color3);
     box-shadow: var(--shadow);
+}
+
+section #stats {
+display: flexbox;
+flex-direction: row;
 }

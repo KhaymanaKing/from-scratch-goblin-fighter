@@ -1,9 +1,9 @@
 // import functions and grab DOM elements
-import { renderMonster } from "./render-utils";
+import { renderMonster } from './render-utils.js';
 
 
-const form = document.querySelector('#form');
-const monstersEl = document.querySelector('#form');
+const form = document.querySelector('form');
+const monstersEl = document.querySelector('.monster-list');
 const hitpointsEl = document.querySelector('#player-hp');
 const experienceEl = document.querySelector('#experience');
 
@@ -18,7 +18,7 @@ let currentId = 3;
 // set event listeners 
 form.addEventListener('submit', (e) => {
     e.preventDefault();
-
+    const data = new FormData(form);
     const monsterName = data.get('monster-name');
 
     const newMonster = {
@@ -26,12 +26,21 @@ form.addEventListener('submit', (e) => {
         name: monsterName,
         hp: Math.ceil(Math.random() * 100),
     };
+    
     currentId++;
     monsters.push(newMonster);
+    showMonsters();
+    console.log(newMonster);
 });
 
 function monsterClicker(monsterData){
     if (monsterData.hp <= 0) return;
+    if (Math.random () < 0.6){
+        monsterData.hp - Math.random * 10;
+        alert('You smacked' + monsterData.name);
+    } else {
+        alert('YOU MISSED');
+    }
     if (Math.random() < 0.45){
         monsterData.hp - 2;
         alert(monsterData.name + ' smacked ya');
@@ -42,8 +51,23 @@ function monsterClicker(monsterData){
         xp++;
     }
     
+    hitpointsEl.textContent = hp;
+    experienceEl.textContent = xp;
+    const monsterhpEl = document.getElementById(`monster-hp${monsterData.id}`);
+    monsterhpEl.textContent = monsterData.hp; 
+
 }
 
-  // get user input
-  // use user input to update state 
-  // update DOM to reflect the new state
+function showMonsters(){
+    monstersEl.textContent = '';
+
+    for (let monster of monsters){
+        const monstersEl = renderMonster(monster);
+        monstersEl.addEventListener('click', () => {
+            monsterClicker(monster);
+        });
+    }
+
+}
+
+showMonsters();
