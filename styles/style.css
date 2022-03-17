@@ -97,3 +97,7 @@ section #stats {
 display: flexbox;
 flex-direction: row;
 }
+
+.monster {
+    background-image: url('../assets/monster.png');
+}
