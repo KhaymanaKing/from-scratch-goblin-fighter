@@ -30,6 +30,20 @@ form.addEventListener('submit', (e) => {
     monsters.push(newMonster);
 });
 
+function monsterClicker(monsterData){
+    if (monsterData.hp <= 0) return;
+    if (Math.random() < 0.45){
+        monsterData.hp - 2;
+        alert(monsterData.name + ' smacked ya');
+    } else { 
+        alert(monsterData.name + 'MISSED!');
+    }
+    if (monsterData.hp === 0){
+        xp++;
+    }
+    
+}
+
   // get user input
   // use user input to update state 
   // update DOM to reflect the new state
