@@ -1,11 +1,22 @@
+body {
+    background-image: url(../assets/forrestbg.png);
+}
 main {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(3, 1fr);
-    grid-column-gap: 20px;
-    grid-row-gap: 0px;
-    }
+    display: grid; 
+    grid-template-rows: max-content max-content max-content; 
+    gap: 0px 0px;
+    justify-content: space-between; 
+}
 
-section.monster img{
-    src: url(../assets/monster.png) ;
+.stats{
+    background-color: rgb(233, 159, 48);
+    grid-row-start: 1;
+}
+.form {
+    background-color: rgb(81, 194, 96);
+    grid-row-start: 2;
+}
+.monsters-list {
+    background-color: rgb(168, 77, 138);
+    grid-row-start: 3;
 }

@@ -69,7 +69,6 @@ function showMonsters(){
             });
         }
         monstersListEl.append(monsterEl);
-      
     }
 }
 showMonsters();
