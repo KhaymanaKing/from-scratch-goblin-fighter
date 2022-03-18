@@ -1,22 +1,75 @@
 body {
-    background-image: url(../assets/forrestbg.png);
+    /* feel free to update these css variables for a quick theme */
+    --color1: white;
+    --color2: white;
+    --color3: white;
+    --color4: white;
+    --color5: white;
 }
-main {
-    display: grid; 
-    grid-template-rows: max-content max-content max-content; 
-    gap: 0px 0px;
-    justify-content: space-between; 
+.main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh
 }
 
-.stats{
-    background-color: rgb(233, 159, 48);
-    grid-row-start: 1;
+div.monster-list {
+    flex: 1;
+    order: 2;
+    border: 2px solid black;
+    height: 100%
 }
-.form {
-    background-color: rgb(81, 194, 96);
-    grid-row-start: 2;
+.monster {
+    animation: myAnim 2s ease 2s infinite normal forwards;
+    height: 20vh;
+    background-color: aqua;
+    justify-content: center;
+    text-align: center;
 }
-.monsters-list {
-    background-color: rgb(168, 77, 138);
-    grid-row-start: 3;
+
+
+
+@keyframes myAnim {
+    0% {
+    transform: scale3d(1, 1, 1);
+    }
+
+    30% {
+    transform: scale3d(1.25, 0.75, 1);
+        }
+
+    40% {
+    transform: scale3d(0.75, 1.25, 1);
+    }
+
+    50% {
+    transform: scale3d(1.15, 0.85, 1);
+        }
+
+    65% {
+    transform: scale3d(0.95, 1.05, 1);
+    }
+
+    75% {
+    transform: scale3d(1.05, 0.95, 1);
+    }
+
+    100% {
+    transform: scale3d(1, 1, 1);
+            }
 }
+
+
+div.stats{
+    flex: 1;
+    order: 1;
+}
+
+div.form{
+    flex: 1;
+    order: 3;
+}
+
+
+
+
