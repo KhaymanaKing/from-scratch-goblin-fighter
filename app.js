@@ -3,18 +3,19 @@ import { renderMonster } from './render-utils.js';
 
 
 const form = document.querySelector('form');
-const monstersEl = document.querySelector('.monster-list');
+const monstersListEl = document.querySelector('.monster-list');
 const hitpointsEl = document.querySelector('#player-hp');
 const experienceEl = document.querySelector('#experience');
 
+
 // let state
-let hp = 0;
+let playerHp = 5;
 let xp = 0;
 let monsters = [
-    { id: 1, name: 'Glurp', hp: 15 },
-    { id: 2, name: 'Terry', hp: 30 },
+    { name: 'Glurp', hp: 1 },
+    { name: 'Terry', hp: 30 },
 ];
-let currentId = 3;
+
 // set event listeners 
 form.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -22,52 +23,53 @@ form.addEventListener('submit', (e) => {
     const monsterName = data.get('monster-name');
 
     const newMonster = {
-        id: currentId,
         name: monsterName,
         hp: Math.ceil(Math.random() * 100),
     };
     
-    currentId++;
+    
     monsters.push(newMonster);
     showMonsters();
-    console.log(newMonster);
 });
 
-function monsterClicker(monsterData){
-    if (monsterData.hp <= 0) return;
-    if (Math.random () < 0.6){
-        monsterData.hp - Math.random * 10;
-        alert('You smacked' + monsterData.name);
-    } else {
-        alert('YOU MISSED');
-    }
-    if (Math.random() < 0.45){
-        monsterData.hp - 2;
-        alert(monsterData.name + ' smacked ya');
-    } else { 
-        alert(monsterData.name + 'MISSED!');
-    }
-    if (monsterData.hp === 0){
-        xp++;
-    }
-    
-    hitpointsEl.textContent = hp;
-    experienceEl.textContent = xp;
-    const monsterhpEl = document.getElementById(`monster-hp${monsterData.id}`);
-    monsterhpEl.textContent = monsterData.hp; 
 
-}
 
 function showMonsters(){
-    monstersEl.textContent = '';
+    monstersListEl.textContent = '';
 
     for (let monster of monsters){
-        const monstersEl = renderMonster(monster);
-        monstersEl.addEventListener('click', () => {
-            monsterClicker(monster);
-        });
+        
+        const monsterEl = renderMonster(monster);
+
+        if (monster.hp > 0) {
+            monsterEl.addEventListener('click', () => {
+                if (Math.random () < .6){
+                    monster.hp--;
+                    playerHp++;
+                    alert('You smacked ' + monster.name);
+                } else {
+                    alert('YOU MISSED');
+                }
+                if (Math.random() < 0.45){
+                    playerHp --;
+                    alert(monster.name + ' smacked ya');
+                } else { 
+                    alert(monster.name + ' MISSED!');
+                }
+                if (monster.hp === 0){
+                    xp++;
+                }
+                if (playerHp === 0){
+                    alert('YOU LOSE');
+                }
+                hitpointsEl.textContent = playerHp;
+                experienceEl.textContent = xp;
+
+                showMonsters();
+            });
+        }
+        monstersListEl.append(monsterEl);
+      
     }
-
 }
-
 showMonsters();
